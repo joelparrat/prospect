@@ -36,7 +36,10 @@ class ProspectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        //$data['user_id'] = auth()->id();
+        $prospect = ProspectsModel::create($data);
+        return $prospect;
     }
 
     /**

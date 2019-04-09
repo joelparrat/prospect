@@ -25,7 +25,7 @@ class CommerciauxController extends Controller
      */
     public function create()
     {
-        //
+        return view('addresses.newAddresse');
     }
 
     /**
@@ -36,7 +36,9 @@ class CommerciauxController extends Controller
      */
     public function store(Request $request)
     {
-        $commercial = CommerciauxModel::where('id', '=', $id)->first();
+        $data = $request->all();
+        //$data['user_id'] = auth()->id();
+        $commercial = CommerciauxModel::create($data);
         return $commercial;
     }
 
@@ -50,6 +52,8 @@ class CommerciauxController extends Controller
     {
         $commercial = CommerciauxModel::where('id', '=', $id)->first();
         return $commercial;
+        $addresse= AddressesModel::find($id);
+        return view('addresses.editAddresse')->with('addresse', $addresse);
     }
 
     /**
@@ -60,7 +64,8 @@ class CommerciauxController extends Controller
      */
     public function edit($id)
     {
-        //
+        $addresse= AddressesModel::find($id);
+        return view('addresses.editAddresse')->with('addresse', $addresse);
     }
 
     /**
@@ -72,7 +77,9 @@ class CommerciauxController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        AddressesModel::find($id)->update($data);
+        return redirect()->route('adresses.index');
     }
 
     /**
@@ -83,6 +90,7 @@ class CommerciauxController extends Controller
      */
     public function destroy($id)
     {
-        //
+        AddressesModel::find($id)->delete();
+        return redirect()->route('adresses.index');
     }
 }

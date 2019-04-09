@@ -16,17 +16,20 @@ class Prospects extends Migration
         Schema::create('Prospects', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('nom', 128);                     // numero/nom de l'equipe
-            $table->string('prenom', 128);                  // couleur de l'equipe
-            $table->string('mail', 128);                    // date/heure de lancement de la partie
-            $table->string('tel', 16);                      // date/heure de fin de la partie
-            $table->string('type', 4);                      // 0 partie non commencee 1 partie en cours 2 partie finie
-            $table->string('naissance')->nullable();        // chrono en h/m/s
-            $table->string('adr')->nullable();              // 0 aucune enigme de resolu 1 ...
-            $table->string('pays')->nullable();             // 0 partie non commencee 1 partie en cours 2 partie finie
-            $table->string('entreprise')->nullable();       // 0 partie non commencee 1 partie en cours 2 partie finie
-            $table->string('profession')->nullable();       // 0 partie non commencee 1 partie en cours 2 partie finie
-            $table->unsignedInteger('fkid');
+            $table->string('nom', 128);                     // nom du prospect
+            $table->string('prenom', 128);                  // prenom du prospect
+            $table->string('mail', 128);                    // mail du prospect
+            $table->string('tel', 16);                      // telephone du prospect
+            $table->string('type', 4);                      // p prospect c client
+            $table->string('naissance')->nullable();        // date de naissance
+            $table->string('adr_no', 8)->nullable();        // adresse no de rue
+            $table->string('adr_rue', 128)->nullable();     // adresse nom de rue
+            $table->string('adr_postal', 8)->nullable();    // adresse code postal
+            $table->string('adr_ville', 128)->nullable();   // adresse ville
+            $table->string('adr_pays', 64)->nullable();     // adresse pays
+            $table->string('entreprise', 128)->nullable();  // entreprise du prospect
+            $table->string('profession', 128)->nullable();  // profession du prospect
+            $table->unsignedInteger('fkid');                // forein key id commercial
             $table->foreign('fkid')->references('id')->on('Commerciaux');
             $table->timestamps();
         });
