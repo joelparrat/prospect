@@ -21,6 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('prenom', 128);                  // prenom du commercial
+            $table->string('tel', 16);                      // telephone du commercial
+            $table->string('ref');                          // reference dans l'entreprise
+            $table->string('adr_no', 8);                    // adresse no de rue
+            $table->string('adr_rue', 128);                 // adresse nom de rue
+            $table->string('adr_postal', 8);                // adresse code postal
+            $table->string('adr_ville', 128);               // adresse ville
+            $table->string('type', 4);                      // a administrateur s chef service e chef equipe c commercial
         });
     }
 
