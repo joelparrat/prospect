@@ -52,8 +52,6 @@ class CommerciauxController extends Controller
     {
         $commercial = CommerciauxModel::where('id', '=', $id)->first();
         return $commercial;
-        $addresse= AddressesModel::find($id);
-        return view('addresses.editAddresse')->with('addresse', $addresse);
     }
 
     /**
@@ -64,8 +62,8 @@ class CommerciauxController extends Controller
      */
     public function edit($id)
     {
-        $addresse= AddressesModel::find($id);
-        return view('addresses.editAddresse')->with('addresse', $addresse);
+        $commercial = CommerciauxModel::where('id', '=', $id)->first();
+        return $commercial;
     }
 
     /**
@@ -78,8 +76,8 @@ class CommerciauxController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        AddressesModel::find($id)->update($data);
-        return redirect()->route('adresses.index');
+        $commercial = CommerciauxModel::find($id)->update($data);
+        return $commercial;
     }
 
     /**
@@ -90,7 +88,7 @@ class CommerciauxController extends Controller
      */
     public function destroy($id)
     {
-        AddressesModel::find($id)->delete();
-        return redirect()->route('adresses.index');
+        $commercial = CommerciauxModel::find($id)->delete();
+        return $commercial;
     }
 }
